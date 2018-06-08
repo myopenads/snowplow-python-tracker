@@ -154,7 +154,7 @@ class Emitter(object):
                 self.bytes_queued += len(str(payload))
 
             if self.method == "post":
-                self.buffer.append({key: str(payload[key]) for key in payload})
+                self.buffer.append({key: (str(payload[key]) if not isinstance(payload[key], unicode) else payload[key]) for key in payload})
             else:
                 self.buffer.append(payload)
 
